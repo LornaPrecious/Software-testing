@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    
+  {% block pagecontent %}
+
+    
+  
+  <div class='container'>
+    <div class="header">
+        <div class="text">Login</div>
+        <div class="image-container">
+            <img src="{% static '/public/parent-1@2x.png' %}" alt='' width='80px' />
+        </div>
+    </div>
+
+      <form method="post" action="/login/">
+          
+        {% csrf_token %} 
+
+           <div class="inputs">
+            <div class="input">
+                <input type="text" name="username" id="username"  placeholder='Username'/>
+              </div>
+            <div class="input">
+              
+              <input type="password" name="password" id="password" placeholder="Password"/>
+            </div>
+        
+           </div>
+           <div class='submit-container'>
+            <button type="submit">Login</button>
+            <button ><a href = '/register/' style="color: white; font-weight: 700; text-decoration: none; font-size: 19px;"> Sign up </a> </button>
+
+            </div>
+          </form> 
+      
+
+
+
+        </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>

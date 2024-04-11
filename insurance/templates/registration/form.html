@@ -1,0 +1,271 @@
+<!--CORRECTED FORM AND CSS-->
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<body>
+    
+  {% block pagecontent %}
+
+
+  {% if user.is_authenticated %}
+      <div class="form-bradley">
+            <form id="userForm" method='POST' action="/quote/">
+
+              {% csrf_token %} 
+
+              <h4>Hi {{user.username}}</h4>
+
+              <div class="section-heading">
+                <h2>Section A - Demographic</h2>
+              </div>
+
+                      
+                <label for="telephoneNo">Telephone no:</label>
+                <input type="tel" id="telephoneNo" name="telephoneNo" required>
+          
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+          
+                <label for="idNumber">ID number:</label>
+                <input type="text" id="idNumber" name="idNumber" required>
+          
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+  
+                <label for="gender">Gender:</label>
+                <input type="text" id="gender" name="gender" required>
+                <label for="occupation">Occupation:</label>
+               <input type="text" id="occupation" name="occupation" required>
+                <hr>
+       
+        
+            <!-- Section B -->
+            <div class="section-heading">
+              <h2>Section B - Dependents</h2>
+            </div>
+
+
+            <div class="dependent-inputs">
+              <div>
+                <label for="dependentName1">Name:</label>
+                <input type="text" id="dependentName" name="dependentName" required>
+              </div>
+              <div>
+                <label for="dependentDob1">Date of Birth:</label>
+                <input type="date" id="dependentDob" name="dependentDob" required>
+              </div>
+              <div>
+                <label for="dependentRelation1">Relationship:</label>
+                <input type="text" id="dependentRelation" name="dependentRelation" required>
+              </div>
+            </div>
+      
+      
+             <!-- Section C -->
+             <div class="section-heading">
+              <h2>Section C - Medical History</h2>
+            </div>
+            <div class="ailments">
+              <div>
+                <label for="chestPain">a). Chest pain, high blood pressure, heart murmur, heart or circulation disorder:</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                      <input class="form-check-input mt-0" type="checkbox" value="chestdisease" id="chestdisease" name="chestdisease" aria-label="Checkbox for following text input" aria-describedby="chestHelp">
+                    </div>
+                    <input type="text" class="form-control" id="chestdisease" name="chestdisease" aria-label="Text input with checkbox">
+                    
+                  </div>
+                  <small id="chestHelp" class="form-text text-muted">Please enter from any of the above disorders</small>
+              </div>
+              <div>
+                <label for="asthma">b). Asthma, chronic cough, shortness of breath or lung disorder:</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                      <input class="form-check-input mt-0" type="checkbox" value="heartdisease" id="heartdisease" name="heartdisease" aria-label="Checkbox for following text input" aria-describedby="chestHelp">
+                    </div>
+                    <input type="text" class="form-control" id="heartdisease" name="heartdisease"  aria-label="Text input with checkbox">
+                    
+                  </div>
+                  <small id="chestHelp" class="form-text text-muted">Please enter from any of the above disorders</small>
+              </div>
+              <div>
+                <label for="urineDisorder">c).Gut,Liver, kidney or bladder disorder:</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                      <input class="form-check-input mt-0" type="checkbox" value="gutdisease" id="gutdisease" name="gutdisease" aria-label="Checkbox for following text input" aria-describedby="chestHelp">
+                    </div>
+                    <input type="text" class="form-control" id="gutdisease" name="gutdisease" aria-label="Text input with checkbox">
+                    
+                  </div>
+                  <small id="chestHelp" class="form-text text-muted">Please enter from any of the above disorders</small>
+              </div>
+              <div>
+                <label for="dizzySpells">d). Dizzy or fainting spells, epilepsy, nervous system or mental disorder:</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                      <input class="form-check-input mt-0" type="checkbox" value="mentaldisease" id="mentaldisease" name="mentaldisease" aria-label="Checkbox for following text input" aria-describedby="chestHelp">
+                    </div>
+                    <input type="text" class="form-control" id="mentaldisease" name="mentaldisease" aria-label="Text input with checkbox">
+                    
+                  </div>
+                  <small id="chestHelp" class="form-text text-muted">Please enter from any of the above disorders</small>
+              </div>
+              <div class="section-heading">
+                <h2>Section D - Contribution</h2>
+                <p> We offer a variety of insurance policies.  </p>
+                <ul>
+                  <li> Indemnity Health Insurance: 1000 - 1000000</li>
+                  <li>Critical Illness Health insurance: 150000 - 300000 </li>
+                  <li>Senior Citizen Health Insurance: 50000 - 250000</li>
+                  <li>Family Health Cover: 10000 - 20000</li>
+                  <li>Individual Health Cover: 5000 - 8000</li>
+                </ul>
+                </div>
+
+              <div>
+                <label for="contribution">How much money do you wish to contribute?</label>
+                <input type="text"  class="form-control" id="contribution" name="contribution" required>
+              </div>
+    
+              <div class="submit-container">
+
+                <button type="submit">Submit</button>
+                <!-- Button trigger modal -->
+                <button id="myBtn"> Preview </a></button>
+      
+              </div>
+            
+          </form>
+        </div>
+ 
+         <!-- The Modal-->
+          <div id="myModal" class="modal">
+
+           <!-- Modal content -->
+            <div class="modal-content">
+              <div class="modal-header">
+                <span class="close">&times;</span>
+              </div>
+              
+              
+              <div class="modal-body">
+                <div class="form-bradley">
+                    <h4>Hi {{user.username}}</h4>
+                    <p>Please preview your application</p>
+                  
+                    <div class="section-heading">
+                      <h2>Section A - Demographic</h2>
+                    </div>
+                 
+                    <p>Phone Number: {{myQuote.phone_number}}</p>
+                    <p>ID Number: {{myQuote.nationalid }}</p>
+                    <p>Date of Birth: {{myQuote.dob }}</p>
+                    <p>Gender: {{myQuote.gender }}</p>
+                    <p>Occupation: {{myQuote.occupation }}</p>
+                
+                    <!-- Display dependent's information -->
+                    <h2>Dependent's Information</h2>
+                    <p>Name: {{mydependants.full_name}}</p>
+                    <p>Date of Birth: {{mydependants.dependants_dob}}</p>
+                    <p>Relationship: {{mydependants.relationship}}</p>
+                
+                   <!-- Display diseases -->
+                    <h2>Medical History</h2>
+                    <p>Mental Disease: {{mymentaldisease.specific_type}}</p>
+                    <p>Heart Disease: {{myheartdisease.specific_type}}</p>
+                    <p>Gut Disease: {{mygutdisease.specific_type}}</p>
+                    <p>Chest Disease: {{mychestdisease.specific_type}}</p>
+                
+                    <h2>Contribution</h2>
+                    <p>Contribution Amount: {{myQuote.contribution_amount }}</p>
+                    
+                    <!-- Display policy -->
+                  {% if policy %}
+                    <h2>Your Policy</h2>
+                    <p>Policy Name: {{ policy.policy_name }} </p> 
+                   
+                  {% endif %}
+
+              </div>
+              </div>
+              <div class="modal-footer">
+                <button> <a  href="/quote/" style="font-weight: 700; text-decoration: none; font-size: 19px; color: white;"> Go back</a></button>
+                <button type="submit">Submit</button>
+       
+              </div> 
+           
+            </div> 
+          </div> 
+  
+  {% else %}
+
+  <h3> You have to login to your account to fill out the insurance form. Please<a href = '/login' style="font-size: 0.8em;"> Login </a> </h3>
+
+
+  {% endif %}
+
+
+    
+    <script>
+      var groupContainer2 = document.getElementById("groupContainer2");
+      if (groupContainer2) {
+        groupContainer2.addEventListener("click", function (e) {
+          window.location.href = "review-lorna.html";
+        });
+      }
+
+      var homeText = document.getElementById("homeText");
+      if (homeText) {
+        homeText.addEventListener("click", function (e) {
+          window.location.href = "./home.html";
+        });
+      }
+
+      var quoteText = document.getElementById("quoteText");
+      if (quoteText) {
+        quoteText.addEventListener("click", function (e) {
+          window.location.href = "./form.html";
+        });
+      }
+
+      var rectangle = document.getElementById("rectangle");
+      if (rectangle) {
+        rectangle.addEventListener("click", function (e) {
+          window.location.href = "./login.html";
+        });
+      }
+    
+            // Get the modal
+      var modal = document.getElementById("myModal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal 
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
+
+    {% endblock %}
+  </body>
+</html>

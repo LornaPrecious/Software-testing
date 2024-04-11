@@ -1,0 +1,82 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    
+  {% block pagecontent %}
+  
+    <div class="contact-esther">
+        <h1 class="contact-us">Contact Us</div>
+    </div>
+
+    <div class="form-bradley">
+
+        <form class="contact-form" method="post" action="/contact/">
+
+          {% csrf_token %} 
+
+              <label id="fullname" name="fullname" placeholder="Enter your Full name" required>Please enter your fullname</label>
+              <input type="text" id="fullname"  name= "fullname">
+            
+              <label id="email" name="email" placeholder="Enter your email" required>Please enter your email</label>
+              <input type="text" id= "email" name = "email">
+      
+
+          
+              <label for="Textarea">Message:</label>
+              <textarea id="message" name="message" rows="3" placeholder="Type your message here"></textarea>
+              
+            <div class="submit-container">
+              <button type="submit">Submit</button>
+    
+            </div>
+          </form>
+      
+          <div class="line-div">
+      
+          <img class="twitter-icon" alt="" src="{% static '/public/twitter.png' %}" />
+          <img class="messenger-icon" alt="" src="{% static '/public/messenger.png' %}" />
+        </div>
+
+
+
+
+    </div>
+     
+
+    <script>
+      var homeText = document.getElementById("homeText");
+      if (homeText) {
+        homeText.addEventListener("click", function (e) {
+          window.location.href = "./home.html";
+        });
+      }
+
+      var quoteText = document.getElementById("quoteText");
+      if (quoteText) {
+        quoteText.addEventListener("click", function (e) {
+          window.location.href = "review-lorna.html";
+        });
+      }
+
+      var rectangle5 = document.getElementById("rectangle5");
+      if (rectangle5) {
+        rectangle5.addEventListener("click", function (e) {
+          window.location.href = "./login.html";
+        });
+      }
+
+      var quoteText2 = document.getElementById("quoteText2");
+      if (quoteText2) {
+        quoteText2.addEventListener("click", function (e) {
+          window.location.href = "./login.html";
+        });
+      }
+    </script>
+
+    {% endblock %}
+  </body>
+</html>

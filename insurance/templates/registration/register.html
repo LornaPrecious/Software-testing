@@ -1,0 +1,65 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    
+  {% block pagecontent %}
+  <div class='container'>
+    <div class="header">
+        <div class="text">Sign Up</div>
+        <div class="image-container">
+          <img src="{% static '/public/parent-1@2x.png' %}" alt='' width='80px' />
+        </div>
+    </div>
+
+        <form method="post" action="/register/">
+          
+          {% csrf_token %} 
+          <div class="inputs">
+            <div class="input">
+                <input type="text" name= "first_name" id= "first_name" placeholder="First name">
+              </div>
+              <div class="input">
+                <input type="text" name= "last_name" id= "last_name" placeholder="Last name">
+              </div> 
+              
+              <div class="input">
+              <input type="email" name="email" id="email" placeholder="Email">
+            
+              </div>
+
+
+           <div class="input">
+               
+                <input type="text" name="username" id="username" placeholder="Username">
+              </div>
+
+            <div class="input">
+             
+              <input type="password" name="password"  id="password" placeholder="Password">
+            </div>
+
+            <div class="input">
+                
+                <input type="password" name="pass2" id="pass2" placeholder="Confirm Password">
+              </div>
+          </div>
+
+          <div class='submit-container'>  
+            <button type="submit" >Sign Me Up</button>
+
+            <button><a href = '/login' style="font-weight: 700; text-decoration: none; font-size: 19px; color: white;"> Login </a> </button>
+          </div>
+          </form>
+      
+  </div>
+
+
+    </div>
+
+    {% endblock %}
+  </body>
+</html>
