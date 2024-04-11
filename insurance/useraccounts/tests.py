@@ -6,9 +6,11 @@ from .models import QuotationInfo
 from django.urls import reverse
 
 
-class QuotationInfoModelTestCase(TestCase):
+class QuotationInfoModelTestCase(TestCase): #TESTS DONE TO THE QUOTATIONINFOR MODEL
     def setUp(self):
+        #Creation of a test user (testuser) using create_user method from Django's User model.
         self.user = User.objects.create_user(username='testuser', password='password123')
+        #Creation of a test customer (John Doe) associated with the test user, utilizing the Customer model.
         self.customer = Customer.objects.create(
             user=self.user,
             customer_id=1,
@@ -16,7 +18,7 @@ class QuotationInfoModelTestCase(TestCase):
             last_name='Doe',
             email='john@example.com'
         )
-
+        #Creation of a test quotation info (quotation_info) associated with the test customer, utilizing the QuotationInfo model.
         self.quotation_info = QuotationInfo.objects.create(
             customer=self.customer,
             nationalid='1234567890',
@@ -28,9 +30,11 @@ class QuotationInfoModelTestCase(TestCase):
         )
 
     def test_quotation_info_str_method(self):
+        #Tests the __str__ method of the QuotationInfo model.
         self.assertEqual(str(self.quotation_info), str(self.quotation_info.quotecode))
 
     def test_quotation_info_fields(self):
+        #Tests various fields of the QuotationInfo model.
         self.assertEqual(self.quotation_info.customer, self.customer)
         self.assertEqual(self.quotation_info.nationalid, '1234567890')
         self.assertEqual(self.quotation_info.dob, '1980-01-01')
@@ -41,12 +45,14 @@ class QuotationInfoModelTestCase(TestCase):
         self.assertEqual(self.quotation_info.contribution_amount, '1000')
 
     def test_quotation_info_db_table(self):
+        #Tests the custom database table name for the QuotationInfo model.
         self.assertEqual(QuotationInfo._meta.db_table, 'quotationTable')
 
     def test_quotation_info_instance(self):
         self.assertIsInstance(self.quotation_info, QuotationInfo)
 
     def test_quotation_info_blank_fields(self):
+        #Tests the handling of blank fields in the QuotationInfo model.
         quotation_info = QuotationInfo.objects.create(quotecode=2)
         self.assertIsNone(quotation_info.nationalid)
         self.assertIsNone(quotation_info.dob)
@@ -56,8 +62,9 @@ class QuotationInfoModelTestCase(TestCase):
 
 
 
-class ViewsTestCase(TestCase):
+class ViewsTestCase(TestCase): #TESTS THE REGISTER AND LOGIN VIEWS 
     def setUp(self):
+        #Client is used to simulate HTTP requests
         self.client = Client()
 
     def test_register_view(self):
@@ -85,7 +92,7 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)  # Assuming login fails and redirects back to login page
 
 
-class ModalTestCase(TestCase):
+class ModalTestCase(TestCase): #UI TESTS FOR THE MODAL DISPLAY OF USER INFORMATION 
     def setUp(self):
         self.client = Client()
 
