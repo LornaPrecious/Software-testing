@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from useraccounts.models import Customer
 
 class CustomerModelTestCase(TestCase):
+    # 'setUp' Function - sets up necessary data for testing, such as creating a test user and a test customer. 
+   
     def setUp(self):
         # Create a test user
         self.user = User.objects.create_user(username='testuser', password='password123')
@@ -18,7 +20,7 @@ class CustomerModelTestCase(TestCase):
         )
 
     def test_customer_str_method(self):
-        """Test the __str__ method of Customer model"""
+        """Test the __str__ method of Customer model matches the expected value, which is the customer_id."""
         self.assertEqual(str(self.customer), '1')  # Since __str__ returns customer_id
 
     def test_customer_fields(self):
@@ -38,7 +40,7 @@ class CustomerModelTestCase(TestCase):
         self.assertIsInstance(self.customer, Customer)
 
     def test_customer_primary_key(self):
-        """Test primary key"""
+        """Test primary key in customer model"""
         self.assertTrue(self.customer.customer_id)
 
     def test_customer_blank_fields(self):
